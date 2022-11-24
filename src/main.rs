@@ -32,8 +32,8 @@ fn main() -> std::io::Result<()> {
     const IMAGE_HEIGHT: u32 = (IMAGE_WIDTH as f64 / ASPECT_RATIO) as u32;
 
     // Parâmetros de câmera
-    const VIEWPORT_WIDTH: f64 = 2.0;
-    const VIEWPORT_HEIGHT: f64 = ASPECT_RATIO * VIEWPORT_WIDTH;
+    const VIEWPORT_HEIGHT: f64 = 2.0;
+    const VIEWPORT_WIDTH: f64 = ASPECT_RATIO * VIEWPORT_HEIGHT;
     const FOCAL_LENGTH: f64 = 1.0;
 
     let origin = Vec3::zero();
