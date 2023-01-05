@@ -1,4 +1,6 @@
-use std::{ops, vec};
+use std::ops;
+
+use crate::vec3::Vec3;
 
 
 #[derive(Clone, Copy, Debug)]
@@ -82,5 +84,8 @@ impl Color {
     }
     pub fn to_string(&self) -> String {
         format!("{} {} {}", (self.r*255.) as u32, (self.g*255.) as u32, (self.b*255.) as u32)
+    }
+    pub fn to_vec3(&self) -> Vec3 {
+        Vec3::new(self.r, self.g, self.b)
     }
 }

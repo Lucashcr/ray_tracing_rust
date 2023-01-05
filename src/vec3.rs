@@ -1,5 +1,7 @@
 use std::ops;
 
+use crate::color::Color;
+
 #[derive(Clone, Copy, Debug)]
 pub struct Vec3 {
     x: f64,
@@ -77,5 +79,8 @@ impl Vec3 {
     }
     pub fn unit_vec(self) -> Vec3{
         self / self.length()
+    }
+    pub fn to_color(&self) -> Color {
+        Color::new(self.x, self.y, self.z)           
     }
 }
