@@ -3,6 +3,12 @@ use std::ops;
 use crate::vec3::Vec3;
 
 
+fn clamp(x: f64, min: f64, max: f64) -> f64 {
+    if x < min { return min; } 
+    if x > max { return max; }
+    x
+}
+
 #[derive(Clone, Copy, Debug)]
 pub struct Color {
     r: f64,
@@ -35,15 +41,15 @@ impl ops::Div<f64> for Color {
     }
 }
 impl Color {
-    fn correct_color(color: Color) -> Color {
-        if 0. <= color.r && color.r <= 1. {
-            if 0. <= color.g && color.g <= 1. {
-                if 0. <= color.b && color.b <= 1. {
-                    return Color { r: color.r, g: color.g, b: color.b };
+    pub fn correct_color(self) -> Color {
+        if 0. <= self.r && self.r <= 1. {
+            if 0. <= self.g && self.g <= 1. {
+                if 0. <= self.b && self.b <= 1. {
+                    return self;
                 }
             }
         }
-        Color { r: color.r, g: color.g, b: color.b } / color.r.max(color.g).max(color.b)
+        Color { r: self.r, g: self.g, b: self.b } / self.r.max(self.g).max(self.b)
     }
 
     pub fn black() -> Color {
@@ -83,7 +89,11 @@ impl Color {
         self.b
     }
     pub fn to_string(&self) -> String {
-        format!("{} {} {}", (self.r*255.) as u32, (self.g*255.) as u32, (self.b*255.) as u32)
+        format!("{} {} {}", 
+            (256. * clamp(self.r, 0., 0.999)) as u32, 
+            (256. * clamp(self.g, 0., 0.999)) as u32, 
+            (256. * clamp(self.b, 0., 0.999)) as u32, 
+        )
     }
     pub fn to_vec3(&self) -> Vec3 {
         Vec3::new(self.r, self.g, self.b)
