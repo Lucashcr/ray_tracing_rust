@@ -1,4 +1,5 @@
 use std::ops;
+use rand::Rng;
 
 use crate::color::Color;
 
@@ -43,6 +44,21 @@ impl Vec3 {
     pub fn zero() -> Vec3 {
         Vec3 { x: 0., y: 0., z: 0. }
     }
+    pub fn random() -> Vec3 {
+        let mut rng = rand::thread_rng();
+        Vec3 { x: rng.gen::<f64>(), y: rng.gen::<f64>(), z: rng.gen::<f64>() }
+    }
+    pub fn limited_random(min: f64, max: f64) -> Vec3 {
+        let mut rng = rand::thread_rng();
+        Vec3 { x: rng.gen_range(min..max), y: rng.gen_range(min..max), z: rng.gen_range(min..max) }
+    }
+    pub fn random_in_unit_sphere() -> Vec3 {
+        let mut p = Vec3::limited_random(-1., 1.);
+        while p.squared_length() >= 1. {
+            p = Vec3::limited_random(-1., 1.);
+        }
+        return p;
+    }
     pub fn new(x: f64, y: f64, z: f64) -> Vec3 {
         Vec3 { x: x, y: y, z: z }
     }
@@ -61,26 +77,26 @@ impl Vec3 {
     pub fn length(&self) -> f64 {
         self.squared_length().sqrt()
     }
-    pub fn to_string(&self) -> String {
-        format!("{} {} {}", self.x, self.y, self.z)
-    }
-    pub fn to_color_string(&self) -> String {
-        format!("{} {} {}", self.x as u32, self.y as u32, self.z as u32)
-    }
+    // pub fn to_string(&self) -> String {
+    //     format!("{} {} {}", self.x, self.y, self.z)
+    // }
+    // pub fn to_color_string(&self) -> String {
+    //     format!("{} {} {}", self.x as u32, self.y as u32, self.z as u32)
+    // }
     pub fn dot(&self, rhs: &Vec3) -> f64 {
         self.x*&rhs.x + self.y*rhs.y + self.z*rhs.z
     }
-    pub fn cross(self, rhs: &Vec3) -> Vec3 {
-        Vec3 { 
-            x: self.y * rhs.z - self.z * rhs.y,
-            y: self.z * rhs.x - self.x * rhs.z, 
-            z: self.x * rhs.y - self.y * rhs.x
-        }
-    }
+    // pub fn cross(self, rhs: &Vec3) -> Vec3 {
+    //     Vec3 { 
+    //         x: self.y * rhs.z - self.z * rhs.y,
+    //         y: self.z * rhs.x - self.x * rhs.z, 
+    //         z: self.x * rhs.y - self.y * rhs.x
+    //     }
+    // }
     pub fn unit_vec(self) -> Vec3{
         self / self.length()
     }
-    pub fn to_color(&self) -> Color {
-        Color::new(self.x, self.y, self.z)           
-    }
+    // pub fn to_color(&self) -> Color {
+    //     Color::new(self.x, self.y, self.z)           
+    // }
 }

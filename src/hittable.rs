@@ -23,9 +23,6 @@ pub struct Sphere {
 }
 
 impl Sphere {
-    pub fn new(center: Vec3, radius: f64) -> Sphere {
-        Sphere { center: center, radius: radius }
-    }
     pub fn hit(&self, r: &Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool {
         let origin_center = *r.origin() - self.center;
         let a = r.direction().squared_length();

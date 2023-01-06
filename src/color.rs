@@ -1,6 +1,6 @@
 use std::ops;
 
-use crate::vec3::Vec3;
+// use crate::vec3::Vec3;
 
 
 fn clamp(x: f64, min: f64, max: f64) -> f64 {
@@ -55,27 +55,27 @@ impl Color {
     pub fn black() -> Color {
         Color { r: 0., g: 0., b: 0. }
     }
-    pub fn white() -> Color {
-        Color { r: 1., g: 1., b: 1. }
-    }
-    pub fn red() -> Color {
-        Color { r: 1., g: 0., b: 0. }
-    }
-    pub fn green() -> Color {
-        Color { r: 0., g: 1., b: 0. }
-    }
-    pub fn blue() -> Color {
-        Color { r: 0., g: 0., b: 1. }
-    }
-    pub fn yellow() -> Color {
-        Color { r: 1., g: 1., b: 0. }
-    }
-    pub fn magenta() -> Color {
-        Color { r: 1., g: 0., b: 1. }
-    }
-    pub fn cyan() -> Color {
-        Color { r: 0., g: 1., b: 1. }
-    }
+    // pub fn white() -> Color {
+    //     Color { r: 1., g: 1., b: 1. }
+    // }
+    // pub fn red() -> Color {
+    //     Color { r: 1., g: 0., b: 0. }
+    // }
+    // pub fn green() -> Color {
+    //     Color { r: 0., g: 1., b: 0. }
+    // }
+    // pub fn blue() -> Color {
+    //     Color { r: 0., g: 0., b: 1. }
+    // }
+    // pub fn yellow() -> Color {
+    //     Color { r: 1., g: 1., b: 0. }
+    // }
+    // pub fn magenta() -> Color {
+    //     Color { r: 1., g: 0., b: 1. }
+    // }
+    // pub fn cyan() -> Color {
+    //     Color { r: 0., g: 1., b: 1. }
+    // }
     pub fn new(r: f64, g: f64, b: f64) -> Color {
         Color::correct_color(Color { r: r, g: g, b: b })
     }
@@ -90,12 +90,12 @@ impl Color {
     }
     pub fn to_string(&self) -> String {
         format!("{} {} {}", 
-            (256. * clamp(self.r, 0., 0.999)) as u32, 
-            (256. * clamp(self.g, 0., 0.999)) as u32, 
-            (256. * clamp(self.b, 0., 0.999)) as u32, 
+            (256. * clamp(self.r.sqrt(), 0., 0.999)) as u32, 
+            (256. * clamp(self.g.sqrt(), 0., 0.999)) as u32, 
+            (256. * clamp(self.b.sqrt(), 0., 0.999)) as u32, 
         )
     }
-    pub fn to_vec3(&self) -> Vec3 {
-        Vec3::new(self.r, self.g, self.b)
-    }
+    // pub fn to_vec3(&self) -> Vec3 {
+    //     Vec3::new(self.r, self.g, self.b)
+    // }
 }

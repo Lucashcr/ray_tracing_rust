@@ -14,4 +14,7 @@ Um renderizador baseado em Ray Tracing escrito em Rust, implementando segundo a 
 ## Implementação de Antialiasing
 ![hello-image-4](./hello-image-4.png)
 
+## Implementação de material difuso
+![hello-image-5](./hello-image-5.png)
+
 #### Fonte: [Ray Tracing In One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
