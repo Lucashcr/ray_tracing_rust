@@ -1,8 +1,6 @@
 use std::ops;
 use rand::Rng;
 
-use crate::color::Color;
-
 #[derive(Clone, Copy, Debug)]
 pub struct Vec3 {
     x: f64,
@@ -59,8 +57,16 @@ impl Vec3 {
         }
         return p;
     }
+    pub fn random_unit_vector() -> Vec3 {
+        Vec3::random_in_unit_sphere().unit_vec()
+    }
     pub fn new(x: f64, y: f64, z: f64) -> Vec3 {
         Vec3 { x: x, y: y, z: z }
+    }
+    pub fn near_zero(&self) -> bool {
+        let s: f64 = 1./100000000.;
+        return (self.x < s) && (self.y < s) && (self.z < s);
+
     }
     pub fn x(&self) -> f64 {
         self.x
